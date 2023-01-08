@@ -12,7 +12,8 @@ CREATE TABLE `User` (
 
 CREATE TABLE `Account` (
     `Idx` INT NOT NULL PRIMARY KEY, # User 테이블과 같은 값 부여
-    `Money` BIGINT NOT NULL DEFAULT 0,
+    `Money` BIGINT NOT NULL DEFAULT 0, # 가상 현금
+    `Balance` BIGINT NOT NULL DEFAULT 0, # 가상 계좌 속 잔고
     `Account` BIGINT NOT NULL, # 계좌
     `Password` VARCHAR(255) NOT NULL, # 계좌 비밀번호
     FOREIGN KEY(`Idx`) REFERENCES `User`(`Idx`) ON UPDATE CASCADE ON DELETE RESTRICT
