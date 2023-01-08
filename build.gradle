@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'com.kjh.bank'
+group 'com.bank'
 version '0.0.1'
 
 repositories {
@@ -21,7 +21,7 @@ test {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'Test'
+                'Main-Class': 'MainController'
         )
     }
 }
