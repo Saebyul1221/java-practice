@@ -17,8 +17,8 @@ CREATE TABLE `Account` (
     `BACK_PIN` CHAR(7) NOT NULL , # 사용자 구별용 주민등록번호 뒷자리
     `Money` BIGINT NOT NULL DEFAULT 0, # 가상 현금
     `Balance` BIGINT NOT NULL DEFAULT 0, # 가상 계좌 속 잔고
-    `Account` BIGINT NOT NULL, # 계좌
-    `Password` VARCHAR(255) NOT NULL, # 계좌 비밀번호
+    `Account` BIGINT NOT NULL DEFAULT 0, # 계좌
+    `Password` VARCHAR(255) NOT NULL DEFAULT "None", # 계좌 비밀번호
     PRIMARY KEY(`Idx`, `BACK_PIN`),
     FOREIGN KEY(`BACK_PIN`) REFERENCES `User`(`BACK_PIN`) ON UPDATE CASCADE ON DELETE RESTRICT
 ) COMMENT = "계좌 정보를 담은 테이블";
