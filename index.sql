@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS `Logs`;
 DROP TABLE IF EXISTS `User`; # RESTRICT, 마지막에 삭제.
 
 CREATE TABLE `User` (
-	`Idx` INT NOT NULL AUTO_INCREMENT,
+    `Idx` INT NOT NULL AUTO_INCREMENT,
     `Name` CHAR(10) NOT NULL,
     `FRONT_PIN` CHAR(6) NOT NULL, # 주민등록번호 앞자리
     `BACK_PIN` CHAR(7) NOT NULL, # 주민등록번호 뒷자리
