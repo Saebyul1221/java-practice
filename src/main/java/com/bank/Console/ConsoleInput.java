@@ -12,4 +12,8 @@ public class ConsoleInput {
         System.out.print(msg);
         return sc.next();
     }
+
+    public static void clear() {
+        for(int i = 0; i < 100; i++) System.out.println("");
+    }
 }
