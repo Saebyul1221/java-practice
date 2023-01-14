@@ -50,13 +50,8 @@ public class UserManager {
 
             console.log("가입이 완료되었습니다! 다시 로그인해주세요.");
             console.log("3초 후 메인화면으로 이동됩니다.");
-            try {
-                Thread.sleep(3000);
-                ConsoleInput.clear();
-                ConsoleManager.init();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            ConsoleInput.sleepMain(3000);
+
             stmt.close();
         }
     }
@@ -76,18 +71,15 @@ public class UserManager {
         if(!rs.next()) {
             console.log("해당 주민등록번호로 가입된 명의가 존재하지 않습니다.");
             console.log("3초 후 메인화면으로 이동됩니다.");
-            try {
-                Thread.sleep(3000);
-                ConsoleInput.clear();
-                ConsoleManager.init();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            ConsoleInput.sleepMain(3000);
         } else {
             String Name = rs.getString("Name");
             String Account = rs.getString("Account");
             ConsoleInput.clear();
-            ConsoleManager.afterLogin(Name, Integer.parseInt(Account));
+
+            ConsoleManager ConsoleManager = new ConsoleManager(conn);
+            ConsoleManager.setAccount(Integer.parseInt(Account));
+            ConsoleManager.afterLogin(Name, backPin);
         }
     }
 }

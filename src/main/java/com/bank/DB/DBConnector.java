@@ -15,11 +15,23 @@ public class DBConnector {
     private static String USER = new String();
     private static String PASSWORD = new String();
     private static String URL = new String();
+    private Connection conn = null;
 
+    public Connection getConn() {
+        return this.conn;
+    }
+
+    public void setConn(Connection conn) {
+        this.conn = conn;
+    }
     public DBConnector() throws IOException {
         configSetup();
     }
 
+    /**
+     * config.properties로 부터 값을 받아 저장하는 함수
+     * @throws IOException
+     */
     public static void configSetup() throws IOException {
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream(propFile);
@@ -33,8 +45,11 @@ public class DBConnector {
         URL = "jdbc:mysql://" + HOST + ":" + PORT + "/" + SCHEMA + "?characterEncoding=utf8";
     }
 
-
-    public static Connection makeConnection()  {
+    /**
+     * DB와 연결하는 함수
+     * @return DB Connection
+     */
+    public Connection makeConnection()  {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -44,6 +59,7 @@ public class DBConnector {
             e.printStackTrace();
         }
 
+        this.setConn(conn);
         return conn;
     }
 }
