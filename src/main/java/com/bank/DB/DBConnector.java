@@ -15,15 +15,8 @@ public class DBConnector {
     private static String USER = new String();
     private static String PASSWORD = new String();
     private static String URL = new String();
-    private Connection conn = null;
+    private Connection conn;
 
-    public Connection getConn() {
-        return this.conn;
-    }
-
-    public void setConn(Connection conn) {
-        this.conn = conn;
-    }
     public DBConnector() throws IOException {
         configSetup();
     }
@@ -59,7 +52,6 @@ public class DBConnector {
             e.printStackTrace();
         }
 
-        this.setConn(conn);
         return conn;
     }
 }

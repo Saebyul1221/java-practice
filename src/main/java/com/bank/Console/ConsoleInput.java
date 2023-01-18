@@ -1,5 +1,6 @@
 package com.bank.Console;
 
+import com.bank.Account.AccountDTO;
 import com.bank.DB.DBConnector;
 
 import java.io.IOException;
@@ -52,19 +53,14 @@ public class ConsoleInput {
     /**
      * n초 대기 후 로그인 이후 화면으로 이동
      * @param time sleep를 수행할 시간. (ms)
+     * @param DTO AccountDTO 객체
      */
-    public static void sleepAfter(int time, String username, String backPin) {
-        DBConnector DB = null;
-        try { DB = new DBConnector(); }
-        catch (IOException e) { e.printStackTrace(); }
-
-        Connection conn = DB.getConn();
+    public static void sleepAfter(Connection conn, int time, AccountDTO DTO) {
         ConsoleManager ConsoleManager = new ConsoleManager(conn);
-
         try {
             Thread.sleep(time);
             clear();
-            ConsoleManager.afterLogin(username, backPin);
+            ConsoleManager.afterLogin(DTO);
         } catch (InterruptedException | SQLException e ) {
             e.printStackTrace();
         }

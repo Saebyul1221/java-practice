@@ -1,5 +1,6 @@
 package com.bank;
 
+import com.bank.Account.AccountDTO;
 import com.bank.Console.ConsoleInput;
 
 import java.io.FileInputStream;
@@ -15,7 +16,7 @@ public class DeveloperOption {
     private Connection conn = null;
     private String password = null;
 
-    public DeveloperOption(Connection conn)  {
+    public DeveloperOption(Connection conn) {
         this.conn = conn;
         configSetup();
     }
@@ -32,7 +33,7 @@ public class DeveloperOption {
         }
     }
 
-    public void transfer() {
+    public void transfer(AccountDTO DTO) {
         console.log("입금 할 계좌를 입력해주세요.");
         String account = console.next("> ");
 
@@ -47,6 +48,10 @@ public class DeveloperOption {
             stmt.setInt(1, Integer.parseInt(money));
             stmt.setString(2, account);
             stmt.executeUpdate();
+
+            console.log(account + " 계좌에 " + money + "원이 입금되었습니다.");
+            console.log("3초 후 메인화면으로 이동됩니다.");
+            ConsoleInput.sleepAfter(conn, 3000, DTO);
             stmt.close();
         } catch (SQLException err) {
             err.printStackTrace();

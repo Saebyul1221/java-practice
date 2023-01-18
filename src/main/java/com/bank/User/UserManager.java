@@ -2,12 +2,13 @@ package com.bank.User;
 
 import java.sql.*;
 
+import com.bank.Account.AccountDTO;
 import com.bank.Console.ConsoleInput;
 import com.bank.Console.ConsoleManager;
 
 public class UserManager {
-    ConsoleInput console = new ConsoleInput();
-    Connection conn = null;
+    private ConsoleInput console = new ConsoleInput();
+    private Connection conn = null;
 
     public UserManager(Connection conn) {
         this.conn = conn;
@@ -78,8 +79,11 @@ public class UserManager {
             ConsoleInput.clear();
 
             ConsoleManager ConsoleManager = new ConsoleManager(conn);
-            ConsoleManager.setAccount(Integer.parseInt(Account));
-            ConsoleManager.afterLogin(Name, backPin);
+            AccountDTO DTO = new AccountDTO();
+            DTO.setUsername(Name);
+            DTO.setBackPin(backPin);
+            DTO.setAccount(Account);
+            ConsoleManager.afterLogin(DTO);
         }
     }
 }
